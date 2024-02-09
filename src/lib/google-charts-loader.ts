@@ -23,7 +23,7 @@ const loadedPackages = new Map();
 
 export function getChartsLoader(): Promise<GoogleChartLoader> {
   // If already included in the page:
-  if (window.google !== undefined) {
+  if (window.google !== undefined && window.google.charts !== undefined) {
     return Promise.resolve(window.google.charts);
   }
 
@@ -46,7 +46,7 @@ export function getChartsLoader(): Promise<GoogleChartLoader> {
       }
 
       script.onload = () => {
-        if (window.google !== undefined) {
+        if (window.google !== undefined && window.google.charts !== undefined) {
           resolve(window.google.charts);
         }
       };
